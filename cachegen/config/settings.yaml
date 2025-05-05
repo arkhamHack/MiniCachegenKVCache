@@ -1,0 +1,10 @@
+# KV Cache Chunking Settings
+chunking:
+  # Maximum number of tokens per chunk
+  max_chunk_size: 512
+  # Minimum chunk size for efficient storage
+  min_chunk_size: 64
+  # Overlap between chunks to maintain context
+  chunk_overlap: 16
+  # Maximum number of chunks to keep in memory
+  max_chunks_in_memory: 1000
