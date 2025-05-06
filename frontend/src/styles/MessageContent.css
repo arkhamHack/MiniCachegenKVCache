@@ -1,0 +1,125 @@
+.message-content-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.message-content-wrapper p {
+  margin: 0.5rem 0;
+}
+
+.message-content-wrapper p:first-child {
+  margin-top: 0;
+}
+
+.message-content-wrapper p:last-child {
+  margin-bottom: 0;
+}
+
+.code-block-wrapper {
+  margin: 1rem 0;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  background-color: #1e1e1e;
+}
+
+.code-block-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background-color: #2d2d2d;
+  border-bottom: 1px solid #3d3d3d;
+}
+
+.code-language {
+  color: #e0e0e0;
+  font-size: 0.875rem;
+  font-family: monospace;
+  text-transform: uppercase;
+}
+
+.copy-button {
+  background: transparent;
+  border: 1px solid #4d4d4d;
+  color: #e0e0e0;
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.copy-button:hover {
+  background-color: #4d4d4d;
+}
+
+/* Inline code */
+code {
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 0.2em 0.4em;
+  border-radius: 0.25rem;
+  font-family: monospace;
+  font-size: 0.9em;
+}
+
+/* Code blocks */
+pre {
+  margin: 0 !important;
+  border-radius: 0 !important;
+}
+
+pre > div {
+  margin: 0 !important;
+  border-radius: 0 !important;
+}
+
+/* Markdown content */
+.message-content-wrapper ul,
+.message-content-wrapper ol {
+  margin: 0.5rem 0;
+  padding-left: 1.5rem;
+}
+
+.message-content-wrapper blockquote {
+  margin: 0.5rem 0;
+  padding-left: 1rem;
+  border-left: 3px solid #4d4d4d;
+  color: #6c757d;
+}
+
+.message-content-wrapper a {
+  color: #ff4444;
+  text-decoration: none;
+}
+
+.message-content-wrapper a:hover {
+  text-decoration: underline;
+}
+
+/* Tables */
+.message-content-wrapper table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 0.5rem 0;
+}
+
+.message-content-wrapper th,
+.message-content-wrapper td {
+  border: 1px solid #4d4d4d;
+  padding: 0.5rem;
+  text-align: left;
+}
+
+.message-content-wrapper th {
+  background-color: #2d2d2d;
+}
+
+/* Dark theme adjustments for user messages */
+.message.user .message-content-wrapper code {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.message.user .message-content-wrapper a {
+  color: white;
+}
