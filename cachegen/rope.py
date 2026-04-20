@@ -1,4 +1,5 @@
 import torch
+
 def apply_rope(x: torch.Tensor, position_ids: torch.Tensor, theta: float = 10000.0) -> torch.Tensor:
     """
     Apply Rotary Positional Embedding (RoPE) to Q or K tensor.
@@ -15,7 +16,7 @@ def apply_rope(x: torch.Tensor, position_ids: torch.Tensor, theta: float = 10000
         raise ValueError("Head dimension must be even for RoPE.")
 
     half_dim = head_dim//2
-    freq.seq = torch.arange(half_dim,dtype=torch.float32,device=x.device)
+    freq_seq = torch.arange(half_dim,dtype=torch.float32,device=x.device)
     inv_freq = 1.0 / (theta ** (freq_seq/half_dim))
     sinusoid_inp = torch.einsum()
     sin = sinusoid_inp.sin().unsqueeze(1)

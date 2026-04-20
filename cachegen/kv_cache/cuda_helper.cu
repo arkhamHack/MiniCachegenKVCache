@@ -1,3 +1,29 @@
+/*
+ * cuda_helper.cu – GPU-accelerated arithmetic coder for KV-cache.
+ *
+ * BUILD
+ * -----
+ * This file must be compiled into a Python extension named _cuda_helper_ext
+ * (e.g. with pybind11) before it can be imported.  Until then the Python
+ * module cuda_helper.py provides a correct zlib-based CPU fallback.
+ *
+ *   nvcc -O2 -shared -Xcompiler -fPIC --compiler-options '-std=c++17' \
+ *        -o _cuda_helper_ext.so cuda_helper.cu
+ *   # then add a thin pybind11 wrapper that exposes encode_arithmetic /
+ *   # decode_arithmetic with the same signatures as cuda_helper.py.
+ *
+ * KNOWN LIMITATIONS OF THE CURRENT KERNEL IMPLEMENTATION
+ * -------------------------------------------------------
+ * 1. encode_arithmetic / decode_arithmetic return void.  The Python caller
+ *    expects encode_arithmetic to RETURN the compressed bytes.  A pybind11
+ *    wrapper must allocate the output buffer, launch the kernel, then return
+ *    the buffer as py::bytes.
+ * 2. The kernels process each symbol independently (one thread per symbol).
+ *    True arithmetic coding is sequential; the current approach is a
+ *    per-symbol range-coded sketch that does not achieve theoretically optimal
+ *    compression.  A correct GPU implementation should use rANS or a
+ *    scan-based range coder.
+ */
 #include <cuda_runtime.h>
 #include <device_launch_parameters.h>
 #include <thrust/device_vector.h>
