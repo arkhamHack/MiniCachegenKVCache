@@ -18,9 +18,9 @@ def apply_rope(x: torch.Tensor, position_ids: torch.Tensor, theta: float = 10000
     half_dim = head_dim//2
     freq_seq = torch.arange(half_dim,dtype=torch.float32,device=x.device)
     inv_freq = 1.0 / (theta ** (freq_seq/half_dim))
-    sinusoid_inp = torch.einsum()
-    sin = sinusoid_inp.sin().unsqueeze(1)
-    cos = sinusoid_inp.cos().unsqueeze(1)
+    sinusoid_inp = torch.einsum('bi,j->bij', position_ids.float(), inv_freq)
+    sin = sinusoid_inp.sin().unsqueeze(1)  # (batch, 1, seq_len, half_dim)
+    cos = sinusoid_inp.cos().unsqueeze(1)  # (batch, 1, seq_len, half_dim)
 
     x1=x[...,:half_dim]
     x2=x[...,half_dim:]
